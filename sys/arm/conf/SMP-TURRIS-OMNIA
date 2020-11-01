@@ -1,0 +1,59 @@
+#include		TURRIS-OMNIA
+#include		GENERIC
+include		ARMADA38X
+
+ident		SMP-TURRIS-OMNIA
+
+# Remove to build a debug kernel:
+nomakeoptions	DEBUG
+
+options		DDB
+options		GEOM_BDE
+options		GEOM_ELI
+options		GEOM_MIRROR
+options		GEOM_UZIP
+options		IPFIREWALL_DEFAULT_TO_ACCEPT
+options		IPFIREWALL_VERBOSE
+options		IPSTEALTH
+options		MROUTING
+options		PPS_SYNC
+options		TCP_SIGNATURE
+
+# Wireless features
+device		wlan_acl
+device		wlan_xauth
+
+# Not all architectures have a consistent GENERIC
+device		netmap
+
+# Network
+device		ether
+device		vlan
+#device		mii
+device		miiproxy
+device		bpf
+device		re
+device		mdio
+device		etherswitch
+device		e6000sw
+device		neta
+
+# Neded for GEOM
+device		xz
+
+# HardenedBSD goodies
+#options		PAX
+#options		PAX_ASLR
+#options		PAX_HARDENING
+#options		PAX_SEGVGUARD
+#options		PAX_INSECURE_MODE
+#options		PAX_CONTROL_ACL
+#options		PAX_CONTROL_ACL_OVERRIDE_SUPPORT
+#options		PAX_CONTROL_EXTATTR
+#options		PAX_JAIL_SUPPORT
+
+#FDT
+# Flattened Device Tree
+options         FDT                     # Configure using FDT/DTB data
+options         FDT_DTB_STATIC
+makeoptions     FDT_DTS_FILE=armada-385-turris-omnia.dts
